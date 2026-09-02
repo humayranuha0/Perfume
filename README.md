@@ -1,58 +1,26 @@
-# 🌸 Aura Perfume - Full-Stack E-Commerce Platform
+# Perfume Shop 🌸
 
-A stylish, modern, and fully functional full-stack e-commerce web application dedicated to luxury fragrances and perfumes. Built with React.js, Node.js/Express, and MongoDB, this platform offers a seamless shopping experience for users and an efficient dashboard for administrators.
+[![Live Demo](https://img.shields.io/badge/LIVE_DEMO-CLICK_HERE-brightgreen?style=for-the-badge&logo=vercel)](https://perfume-eight-lake.vercel.app/)
 
----
+## 🌐 Live Website
 
-## ✨ Features
+🔗 [Perfume Shop Live App](https://perfume-eight-lake.vercel.app/)
 
-### 👤 User Features
+## 🚀 Features
 
-- **User Authentication:** Secure login and registration functionality.
-- **Interactive Shopping Cart:** Easily add, remove, and update items in the shopping cart.
-- **Seamless Checkout:** Complete orders with smooth online payment/mobile banking integrations (bKash/Nagad/Cards).
-- **Product Browsing:** Filter, search, and view detailed descriptions of luxury perfumes.
-- **Responsive Design:** Optimized for mobile, tablet, and desktop screens.
-- **Aesthetic UI Popups:** Enhanced user alerts and notifications integrated with SweetAlert2.
-
-### 🛡️ Admin Features
-
-- **Order Management:** Approve, track, and update order delivery statuses with automated notifications.
-- **Product Management:** Add, update, or remove perfume inventory effortlessly.
-
----
+* **Product Browsing:** Explore a luxury collection of fine fragrances with responsive layouts.
+* **Filter & Search:** Easily find perfumes based on categories, scent profiles, and brands.
+* **Interactive Cart:** Add to cart functionality with dynamic price calculations.
+* **Responsive Design:** Optimized for seamless viewing on mobile, tablet, and desktop screens.
 
 ## 🛠️ Tech Stack
 
-**Frontend:**
+* **Frontend:** React.js, HTML5, CSS3, Bootstrap, React Icons
+* **Deployment:** Vercel
 
-- React.js
-- Bootstrap / Custom CSS
-- SweetAlert2
-- AOS (Animate On Scroll)
+## ⚙️ Installation & Setup
 
-**Backend:**
-
-- Node.js
-- Express.js
-
-**Database:**
-
-- MongoDB
-
----
-
-## 🚀 Getting Started
-
-### Prerequisites
-
-Make sure you have **Node.js** and **npm** installed on your machine.
-
-### Installation
-
-```markdown
-# Perfume Shop 🌸
-
-[🌐 Live Demo](https://perfume-eight-lake.vercel.app/) | [💻 GitHub Repository](https://github.com/humayranuha0/Perfume)
-   
-# Perfume-Shop
+1. **Clone the repository:**
+   ```bash
+   git clone [https://github.com/humayranuha0/Perfume.git](https://github.com/humayranuha0/Perfume.git)
+   cd Perfume
