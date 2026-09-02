@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
 export default function Checkout({ cartItems, setCartItems }) {
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:3000";
   const navigate = useNavigate();
   const existingUser = JSON.parse(localStorage.getItem("user"));
 
@@ -44,12 +45,12 @@ export default function Checkout({ cartItems, setCartItems }) {
       status: "Pending",
     };
 
-    try {
-      const response = await fetch("http://localhost:3000/api/orders", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(newOrder),
-      });
+   try {
+  const response = await fetch(`${API_BASE_URL}/api/orders`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(newOrder),
+  });
 
       if (response.ok) {
         Swal.fire({

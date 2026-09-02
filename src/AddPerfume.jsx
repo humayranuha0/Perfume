@@ -4,6 +4,7 @@ import { FiArrowLeft, FiStar, FiUploadCloud } from 'react-icons/fi';
 import Swal from 'sweetalert2';
 
 export default function AddPerfume() {
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000';
   const [perfumeData, setPerfumeData] = useState({
     name: '',
     category: '',
@@ -25,7 +26,7 @@ const handleSubmit = async (e) => {
   setLoading(true);
 
   try {
-    const res = await fetch('http://localhost:3000/api/perfumes/add', {
+    const res = await fetch(`${API_BASE_URL}/api/perfumes/add`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(perfumeData)

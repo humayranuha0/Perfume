@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:3000";
 
 export default function Login({ setUser }) {
   const [email, setEmail] = useState("");
@@ -13,11 +14,12 @@ export default function Login({ setUser }) {
     setError("");
     setLoading(true);
 
-    try {
-      const res = await axios.post("http://localhost:3000/api/login", {
-        email,
-        password,
-      });
+ try {
+  const res = await axios.post(`${API_BASE_URL}/api/login`, {
+    email,
+    password,
+  });
+ 
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("user", JSON.stringify(res.data.user));
       setUser(res.data.user);

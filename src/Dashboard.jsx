@@ -12,11 +12,12 @@ import {
 } from "react-icons/fi";
 
 export default function Dashboard({ user }) {
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:3000";
   const [orders, setOrders] = useState([]);
   const currentUser = user || JSON.parse(localStorage.getItem("user")) || {};
 
   useEffect(() => {
-    fetch("http://localhost:3000/api/orders")
+    fetch(`${API_BASE_URL}/api/orders`)
       .then((res) => res.json())
       .then((data) => {
         const ordersArray = Array.isArray(data)

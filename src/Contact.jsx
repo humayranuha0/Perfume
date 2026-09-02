@@ -12,6 +12,7 @@ import {
 import { HiEnvelopeOpen } from "react-icons/hi2";
 
 export default function Contact() {
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:3000";
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -30,12 +31,11 @@ export default function Contact() {
     setLoading(true);
 
     try {
-      const response = await fetch("http://localhost:3000/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      });
-
+  const response = await fetch(`${API_BASE_URL}/api/contact`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(formData),
+  });
       const data = await response.json();
       if (data.success) {
         setSubmitted(true);

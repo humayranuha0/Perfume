@@ -3,13 +3,14 @@ import { Link } from "react-router-dom";
 
 export default function FeaturedScents({ onAddToCart }) {
   const [perfumes, setPerfumes] = useState([]);
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:3000";
 
-  useEffect(() => {
-    fetch("http://localhost:3000/api/perfumes")
-      .then((res) => res.json())
-      .then((data) => setPerfumes(data))
-      .catch((err) => console.log(err));
-  }, []);
+ useEffect(() => {
+  fetch(`${API_BASE_URL}/api/perfumes`)
+    .then((res) => res.json())
+    .then((data) => setPerfumes(data))
+    .catch((err) => console.log(err));
+}, []);
 
   return (
     <section className="py-5">

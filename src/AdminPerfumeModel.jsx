@@ -5,14 +5,14 @@ import { FiShoppingCart } from "react-icons/fi";
 
 export default function PerfumesList({ onAddToCart }) {
   const [perfumes, setPerfumes] = useState([]);
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:3000";
 
-  useEffect(() => {
-    fetch("http://localhost:3000/api/perfumes")
-      .then((res) => res.json())
-      .then((data) => setPerfumes(data))
-      .catch((err) => console.error("Error fetching perfumes:", err));
-  }, []);
-
+useEffect(() => {
+  fetch(`${API_BASE_URL}/api/perfumes`)
+    .then((res) => res.json())
+    .then((data) => setPerfumes(data))
+    .catch((err) => console.error("Error fetching perfumes:", err));
+}, []);
   return (
     <div
       className="py-5"

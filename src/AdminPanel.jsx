@@ -17,6 +17,7 @@ import {
 import Swal from "sweetalert2";
 
 export default function AdminPanel() {
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:3000";
   const [activeTab, setActiveTab] = useState("contacts");
   const [messages, setMessages] = useState([]);
   const [perfumes, setPerfumes] = useState([]);
@@ -26,67 +27,59 @@ export default function AdminPanel() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch("http://localhost:3000/api/contact")
-      .then((res) => res.json())
-      .then((data) =>
-        setMessages(Array.isArray(data) ? data : data.messages || []),
-      )
-      .catch((err) => console.error("Error fetching messages:", err));
+  fetch(`${API_BASE_URL}/api/contact`)
+    .then((res) => res.json())
+    .then((data) =>
+      setMessages(Array.isArray(data) ? data : data.messages || [])
+    )
+    .catch((err) => console.error("Error fetching messages:", err));
 
-    fetch("http://localhost:3000/api/perfumes")
-      .then((res) => res.json())
-      .then((data) =>
-        setPerfumes(Array.isArray(data) ? data : data.perfumes || []),
-      )
-      .catch((err) => console.error("Error fetching perfumes:", err));
+  fetch(`${API_BASE_URL}/api/perfumes`)
+    .then((res) => res.json())
+    .then((data) =>
+      setPerfumes(Array.isArray(data) ? data : data.perfumes || [])
+    )
+    .catch((err) => console.error("Error fetching perfumes:", err));
 
-    fetch("http://localhost:3000/api/orders")
-      .then((res) => res.json())
-      .then((data) => {
-        if (Array.isArray(data)) {
-          setOrders(data);
-        } else if (Array.isArray(data.orders)) {
-          setOrders(data.orders);
-        } else if (Array.isArray(data.data)) {
-          setOrders(data.data);
-        } else {
-          setOrders([]);
-        }
-      })
-      .catch((err) => console.error("Error fetching orders:", err));
-  }, []);
-
-  const handleDeleteMessage = async (id) => {
-    try {
-      const res = await fetch(`http://localhost:3000/api/contact/${id}`, {
-        method: "DELETE",
-      });
-      const data = await res.json();
-      if (data.success) {
-        setMessages(messages.filter((msg) => (msg._id || msg.id) !== id));
+  fetch(`${API_BASE_URL}/api/orders`)
+    .then((res) => res.json())
+    .then((data) => {
+      if (Array.isArray(data)) {
+        setOrders(data);
+      } else if (Array.isArray(data.orders)) {
+        setOrders(data.orders);
       }
-    } catch (err) {
-      console.error("Error deleting message:", err);
-    }
-  };
+    })
+    .catch((err) => console.error("Error fetching orders:", err));
+}, []);
 
-  const handleDeletePerfume = async (id) => {
-    try {
-      const res = await fetch(
-        `http://localhost:3000/api/perfumes/delete/${id}`,
-        {
-          method: "DELETE",
-        },
-      );
-      const data = await res.json();
-      if (data.success) {
-        setPerfumes(perfumes.filter((p) => (p._id || p.id) !== id));
-      }
-    } catch (err) {
-      console.error("Error deleting perfume:", err);
+ const handleDeleteMessage = async (id) => {
+  try {
+    const res = await fetch(`${API_BASE_URL}/api/contact/${id}`, {
+      method: "DELETE",
+    });
+    const data = await res.json();
+    if (data.success) {
+      setMessages(messages.filter((msg) => (msg._id || msg.id) !== id));
     }
-  };
+  } catch (err) {
+    console.error("Error deleting message:", err);
+  }
+};
 
+ const handleDeletePerfume = async (id) => {
+  try {
+    const res = await fetch(`${API_BASE_URL}/api/perfumes/delete/${id}`, {
+      method: "DELETE",
+    });
+    const data = await res.json();
+    if (data.success) {
+      setPerfumes(perfumes.filter((p) => (p._id || p.id) !== id));
+    }
+  } catch (err) {
+    console.error("Error deleting perfume:", err);
+  }
+};
   const handleDateChange = (orderId, date) => {
     setDeliveryDates({ ...deliveryDates, [orderId]: date });
   };
@@ -110,18 +103,17 @@ export default function AdminPanel() {
       });
       return;
     }
+const messageText = `Your order has been confirmed. Expected delivery date is ${date}.`;
 
-    const messageText = `Your order has been confirmed. Expected delivery date is ${date}.`;
-
-    try {
-      const res = await fetch(`http://localhost:3000/api/orders/${orderId}`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          status: "Confirmed",
-          deliveryMessage: messageText,
-        }),
-      });
+try {
+  const res = await fetch(`${API_BASE_URL}/api/orders/${orderId}`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      status: "Confirmed",
+      deliveryMessage: messageText,
+    }),
+  });
 
       const data = await res.json();
 

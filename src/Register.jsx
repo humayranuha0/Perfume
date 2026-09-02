@@ -3,6 +3,7 @@ import { useNavigate, Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
 export default function Register({ setUser }) {
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:3000";
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -22,13 +23,12 @@ export default function Register({ setUser }) {
     e.preventDefault();
     setError("");
 
-    try {
-      const response = await fetch("http://localhost:3000/api/register", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      });
-
+   try {
+  const response = await fetch(`${API_BASE_URL}/api/register`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(formData),
+  });
       const data = await response.json();
 
       if (!response.ok) {
