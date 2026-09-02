@@ -50,9 +50,9 @@ Make sure you have **Node.js** and **npm** installed on your machine.
 
 ### Installation
 
-1. **Clone the repository:**
-   ```bash
-   git clone [https://github.com/your-username/your-repo-name.git](https://github.com/your-username/your-repo-name.git)
-   cd your-repo-name
-   ```
+```markdown
+# Perfume Shop 🌸
+
+[🌐 Live Demo](https://perfume-eight-lake.vercel.app/) | [💻 GitHub Repository](https://github.com/humayranuha0/Perfume)
+   
 # Perfume-Shop
